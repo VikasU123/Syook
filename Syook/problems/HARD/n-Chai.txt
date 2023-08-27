@@ -1,0 +1,24 @@
+function orderChai(n, k, g, b) {
+  let result = [];
+
+  while (n > 0) {
+    // If there are more green chai bags and last k cups weren't green
+    if (g > 0 && (result.length < k || result.slice(-k).every(chai => chai === "Black"))) {
+      result.push("Green");
+      g--;
+      n--;
+    }
+    // If there are more black chai bags and last k cups weren't black
+    else if (b > 0 && (result.length < k || result.slice(-k).every(chai => chai === "Green"))) {
+      result.push("Black");
+      b--;
+      n--;
+    }
+    // If neither green nor black chai can be used without violating the k cups constraint
+    else {
+      return [];
+    }
+  }
+
+  return result;
+}
